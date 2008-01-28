@@ -1,6 +1,6 @@
 Name: python-epsilon
 Summary: A small utility package
-Version: 0.5.8.
+Version: 0.5.8
 Release: %mkrel 1
 Group: Development/Python 
 URL: http://www.divmod.org/trac/wiki/DivmodEpsilon
