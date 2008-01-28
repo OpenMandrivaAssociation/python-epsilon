@@ -1,6 +1,6 @@
 Name: python-epsilon
 Summary: A small utility package
-Version: 0.2.1
+Version: 0.5.8.
 Release: %mkrel 1
 Group: Development/Python 
 URL: http://www.divmod.org/trac/wiki/DivmodEpsilon
@@ -16,7 +16,7 @@ A small utility package that depends on tools too recent for Twisted (like datet
 %files
 %defattr(-,root,root)
 %py_platsitedir/*
-
+%{_bindir}/benchmark
 #------------------------------------------------------------
 
 %prep
