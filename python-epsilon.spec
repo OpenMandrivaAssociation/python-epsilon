@@ -12,8 +12,11 @@ BuildRequires: python-twisted
 %py_requires -d
 
 %description
-A small utility package that depends on tools too recent for Twisted (like datetime in python2.4) but performs generic enough functions that it can be used in projects that don't want to share Divmod's other projects' large footprint. 
-'
+A small utility package that depends on tools too recent for Twisted (like
+datetime in python2.4) but performs generic enough functions that it can be
+used in projects that don't want to share Divmod's other projects' large
+footprint. 
+
 %files
 %defattr(-,root,root)
 %py_platsitedir/*
