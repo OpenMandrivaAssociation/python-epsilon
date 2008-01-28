@@ -8,6 +8,7 @@ Source0: Epsilon-%{version}.tar.gz
 License: BSD
 Provides: python-Epsilon = %version
 Provides: Epsilon = %version
+BuildRequires: python-twisted
 %py_requires -d
 
 %description
