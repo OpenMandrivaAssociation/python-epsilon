@@ -3,6 +3,7 @@ Summary: A small utility package
 Version: 0.5.8
 Release: %mkrel 1
 Group: Development/Python 
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 URL: http://www.divmod.org/trac/wiki/DivmodEpsilon
 Source0: Epsilon-%{version}.tar.gz
 License: BSD
