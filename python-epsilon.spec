@@ -1,7 +1,7 @@
 %define module  epsilon
 %define name    python-%{module}
-%define version 0.5.8
-%define release %mkrel 2
+%define version 0.5.9
+%define release %mkrel 1
 
 Name: 		%{name}
 Summary: 	A small utility package
@@ -14,6 +14,7 @@ Source0: 	Epsilon-%{version}.tar.gz
 License: 	BSD
 Provides: 	python-Epsilon = %{version}
 Provides: 	Epsilon = %version
+Requires:	python-twisted
 BuildRequires:	python-twisted
 BuildArch:	noarch
 %py_requires -d
@@ -21,8 +22,8 @@ BuildArch:	noarch
 %description
 A small utility package that depends on tools too recent for Twisted (like
 datetime in python2.4) but performs generic enough functions that it can be
-used in projects that don't want to share Divmod's other projects' large
-footprint. 
+used in projects that don't want to share the large footprint of Divmod's 
+other projects.
 
 %prep
 %setup -q -n Epsilon-%version
@@ -33,7 +34,10 @@ footprint.
 %install
 %__rm -rf %{buildroot}
 
-%__python setup.py install --root=%{buildroot} --record=INSTALLED_FILES
+%__python setup.py install --root=%{buildroot} --record=INSTALLED_FILES.tmp
+%__grep -v %{py_sitedir}/build INSTALLED_FILES.tmp > INSTALLED_FILES
+
+%__rm -rf %{buildroot}%{py_sitedir}/build
 
 %clean
 %__rm -rf %buildroot
@@ -41,4 +45,3 @@ footprint.
 %files -f INSTALLED_FILES
 %defattr(-,root,root)
 %doc README *.txt LICENSE
-
