@@ -1,7 +1,7 @@
 %define module  epsilon
 %define name    python-%{module}
 %define version 0.5.9
-%define release %mkrel 1
+%define release %mkrel 2
 
 Name: 		%{name}
 Summary: 	A small utility package
