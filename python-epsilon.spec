@@ -1,7 +1,7 @@
 %define module  epsilon
 %define name    python-%{module}
-%define version 0.5.11
-%define release %mkrel 3
+%define version 0.6.0
+%define release %mkrel 1
 
 Name: 		%{name}
 Summary: 	A small utility package
@@ -15,9 +15,8 @@ License: 	BSD
 Provides: 	python-Epsilon = %{version}
 Provides: 	Epsilon = %version
 Requires:	python-twisted
-BuildRequires:	python-twisted
+BuildRequires:	python-devel python-twisted
 BuildArch:	noarch
-%py_requires -d
 
 %description
 A small utility package that depends on tools too recent for Twisted (like
@@ -34,7 +33,7 @@ other projects.
 %install
 %__rm -rf %{buildroot}
 
-%__python setup.py install --root=%{buildroot} --record=INSTALLED_FILES.tmp
+PYTHONDONTWRITEBYTECODE= %__python setup.py install --root=%{buildroot} --record=INSTALLED_FILES.tmp
 %__grep -v %{py_sitedir}/build INSTALLED_FILES.tmp > INSTALLED_FILES
 
 %__rm -rf %{buildroot}%{py_sitedir}/build
