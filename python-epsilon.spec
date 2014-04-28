@@ -30,11 +30,11 @@ other projects.
 
 %install
 PYTHONDONTWRITEBYTECODE= %__python setup.py install --root=%{buildroot} --record=INSTALLED_FILES.tmp
-grep -v %{py_puresitedir}/build INSTALLED_FILES.tmp > INSTALLED_FILES
 
 rm -rf %{buildroot}%{py_puresitedir}/build
 
-%files -f INSTALLED_FILES
+%files
 %doc README *.txt LICENSE
-
+%{py_puresitedir}/*
+%{_bindir}/*
 
