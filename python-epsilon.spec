@@ -4,7 +4,7 @@ Summary:	A small utility package
 
 Name:		python-%{module}
 Version:	0.7.0
-Release:	1
+Release:	2
 Group:		Development/Python 
 License:	BSD
 Url:		http://www.divmod.org/trac/wiki/DivmodEpsilon
