@@ -3,18 +3,18 @@
 Summary:	A small utility package
 
 Name:		python-%{module}
-Version:	0.7.0
+Version:	0.7.3
 Release:	7
 Group:		Development/Python 
 License:	BSD
 Url:		http://www.divmod.org/trac/wiki/DivmodEpsilon
-Source0:	https://pypi.python.org/packages/source/E/Epsilon/Epsilon-%{version}.tar.gz
+Source0:	https://files.pythonhosted.org/packages/de/5b/7dde11d1462bd0780e518f885d32f9b13c8a8f2046a4c9f63e5c4243b9e9/Epsilon-0.7.3.tar.gz
 BuildArch:	noarch
-BuildRequires:	pkgconfig(python2)
-BuildRequires:	python2-twisted
+BuildRequires:	pkgconfig(python)
+BuildRequires:	python-twisted
 Provides:	python-Epsilon = %{version}
 Provides:	Epsilon = %{version}
-Requires:	python2-twisted
+Requires:	python-twisted
 
 %description
 A small utility package that depends on tools too recent for Twisted (like
@@ -26,15 +26,15 @@ other projects.
 %setup -qn Epsilon-%{version}
 
 %build
-%__python2 setup.py build
+find . -name "*.py" -exec 2to3 -w {} \;
+%py_build
 
 %install
-PYTHONDONTWRITEBYTECODE= %__python2 setup.py install --root=%{buildroot} --record=INSTALLED_FILES.tmp
+%py_install
 
 rm -rf %{buildroot}%{py2_puresitedir}/build
 
 %files
-%doc README *.txt LICENSE
-%{py2_puresitedir}/*
+%{py_puresitedir}/*
 %{_bindir}/*
 
