@@ -3,12 +3,12 @@
 Summary:	A small utility package
 
 Name:		python-%{module}
-Version:	0.7.3
-Release:	8
+Version:	0.8.0
+Release:	1
 Group:		Development/Python 
 License:	BSD
 Url:		http://www.divmod.org/trac/wiki/DivmodEpsilon
-Source0:	https://files.pythonhosted.org/packages/de/5b/7dde11d1462bd0780e518f885d32f9b13c8a8f2046a4c9f63e5c4243b9e9/Epsilon-0.7.3.tar.gz
+Source0:	https://pypi.python.org/packages/source/e/epsilon/epsilon-%{version}.tar.gz
 BuildArch:	noarch
 BuildRequires:	pkgconfig(python)
 BuildRequires:	python-twisted
@@ -23,7 +23,7 @@ used in projects that don't want to share the large footprint of Divmod's
 other projects.
 
 %prep
-%setup -qn Epsilon-%{version}
+%autosetup -p1 -n epsilon-%{version}
 
 %build
 find . -name "*.py" -exec 2to3 -w {} \;
@@ -32,9 +32,8 @@ find . -name "*.py" -exec 2to3 -w {} \;
 %install
 %py_install
 
-rm -rf %{buildroot}%{py2_puresitedir}/build
+rm -rf %{buildroot}%{py_puresitedir}/build
 
 %files
 %{py_puresitedir}/*
 %{_bindir}/*
-
