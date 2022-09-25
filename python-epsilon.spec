@@ -12,6 +12,7 @@ Source0:	https://pypi.python.org/packages/source/e/epsilon/epsilon-%{version}.ta
 BuildArch:	noarch
 BuildRequires:	pkgconfig(python)
 BuildRequires:	python-twisted
+BuildRequires:	python-pip
 Provides:	python-Epsilon = %{version}
 Provides:	Epsilon = %{version}
 Requires:	python-twisted
@@ -24,9 +25,9 @@ other projects.
 
 %prep
 %autosetup -p1 -n epsilon-%{version}
+find . -name "*.py" -exec 2to3 -w {} \;
 
 %build
-find . -name "*.py" -exec 2to3 -w {} \;
 %py_build
 
 %install
