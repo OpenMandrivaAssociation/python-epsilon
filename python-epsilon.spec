@@ -7,7 +7,7 @@ Version:	0.8.0
 Release:	2
 Group:		Development/Python 
 License:	BSD
-Url:		http://www.divmod.org/trac/wiki/DivmodEpsilon
+Url:		https://www.divmod.org/trac/wiki/DivmodEpsilon
 Source0:	https://pypi.python.org/packages/source/e/epsilon/epsilon-%{version}.tar.gz
 BuildArch:	noarch
 BuildRequires:	pkgconfig(python)
