@@ -4,15 +4,18 @@ Summary:	A small utility package
 
 Name:		python-%{module}
 Version:	0.8.0
-Release:	4
+Release:	5
 Group:		Development/Python 
-License:	BSD
+License:	MIT
 Url:		https://www.divmod.org/trac/wiki/DivmodEpsilon
 Source0:	https://pypi.python.org/packages/source/e/epsilon/epsilon-%{version}.tar.gz
 BuildArch:	noarch
-BuildRequires:	pkgconfig(python)
+BuildRequires:	pkgconfig(python3)
 BuildRequires:	python-twisted
-BuildRequires:	python-pip
+BuildRequires:	python%{pyver}dist(pip)
+BuildRequires:	python%{pyver}dist(setuptools)
+BuildRequires:	python%{pyver}dist(setuptools-scm)
+BuildRequires:	python%{pyver}dist(wheel)
 Provides:	python-Epsilon = %{version}
 Provides:	Epsilon = %{version}
 Requires:	python-twisted
@@ -25,9 +28,14 @@ other projects.
 
 %prep
 %autosetup -p1 -n epsilon-%{version}
-find . -name "*.py" -exec 2to3 -w {} \;
+# Python 3.15 has no 2to3. The library is already Python 3; rewrite the
+# few calls 2to3 used to fix.
+sed -i 's/unicode(/str(/' epsilon/caseless.py
+sed -i 's/\.iteritems()/.items()/' epsilon/spewer.py epsilon/hotfixes/delayedcall_seconds.py
+sed -i "s/d.has_key('statinfo')/'statinfo' in d/" epsilon/hotfixes/filepath_copyTo.py
 
 %build
+export SETUPTOOLS_SCM_PRETEND_VERSION=%{version}
 %py_build
 
 %install
